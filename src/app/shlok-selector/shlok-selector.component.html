@@ -1,0 +1,19 @@
+<div class="dialogTitle" [ngStyle]="setting.getDialogTitleStyle(data.width)">
+  <div style="height: 10px; background-color: white;"> </div>
+  <div style="height: 5px;"> </div>
+  <input type="image" src="assets\images\back.png" (click)="closeDialog()" alt="Submit" align="right"
+    class="dialogBackBtn">
+  श्लोक क्रमांक निवडा
+</div>
+<br>
+
+<div class="dialogPage" [ngStyle]="getShlokSelectorStyle()" (touchstart)="tabTouchStart($event)"
+  (touchmove)="tabTouchMove($event)" (touchend)="tabTouchEnd($event)">
+  <circle-progress [title]="shlokNo" [percent]="percentage" [maxPercent]="100" [radius]="100" [renderOnClick]="false"
+    [showUnits]="false" [showTitle]="true" [titleFontSize]="75" [showSubtitle]="false" [outerStrokeWidth]="15"
+    [innerStrokeWidth]="5" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="false">
+  </circle-progress>
+  <mat-slider min="1" max="205" (input)="sliderChange($event)" [value]="shlokNo"></mat-slider>
+
+  <input type="image" style="margin: 30px;" src="assets\images\ok.png" (click)="acceptChanges()" alt="Submit">
+</div>

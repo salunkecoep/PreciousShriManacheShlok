@@ -1,0 +1,66 @@
+<div class="homePageHeader">
+  <b>{{title}}</b>
+
+  <div class="home-main-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" style="background-color: transparent; border: none;">
+      <mat-icon style="font-size: 25px !important; color:black;">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openRateUsDialog()">
+        <mat-icon>rate_review</mat-icon>
+        <span>Rate Us</span>
+      </button>
+      <button mat-menu-item (click)="openAboutUsDialog()">
+        <mat-icon>info</mat-icon>
+        <span>About</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <input type="image" style="padding-right: 35px;" src="assets\images\pasaydan.png" (click)="openPasaydanDialog()"
+    alt="Submit" align="right" class="homePageBtn">
+  <input type="image" src="assets\images\poet.png" (click)="openPoetDialog()" alt="Submit" align="right"
+    class="homePageBtn">
+  <input type="image" src="assets\images\select.png" (click)="openShlokSelectorDialog()" alt="Submit" align="right"
+    class="homePageBtn">
+</div>
+
+<mat-tab-group #tabGroup class="demo-tab-group" [(selectedIndex)]="selectedTabIndex"
+  (selectedTabChange)="tabChanged($event)" animationDuration="0ms" mat-align-tabs="center"
+  (touchstart)="tabGroupTouchStart($event)" (touchmove)="tabGroupTouchMove($event)"
+  (touchend)="tabGroupTouchEnd($event)">
+
+  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+    <ng-template mat-tab-label>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <span style="padding-left:5%;color: white;">श्लोक {{index | marathinumber}}</span>
+      </div>
+    </ng-template>
+
+    <div [ngStyle]="getBackGroundImage()" class="bgImage" (touchstart)="tabTouchStart($event)"
+      (touchmove)="tabTouchMove($event)" (touchend)="tabTouchEnd($event)">
+
+      <br>
+      <br>
+      <div *ngFor="let line of shlokLines;">
+        <div class="shlokText">
+          <b>{{line}}</b>
+        </div>
+      </div>
+
+      <br>
+      <div class="playPauseBtn">
+        <input type="image" *ngIf="!this.startShlokAudio" src="assets/images/playAudio.png" (click)="startAudio()"
+          alt="Submit" align="center" style="width: 50px; height: 50px;">
+        <input type="image" *ngIf="this.startShlokAudio" src="assets/images/pauseAudio.png" (click)="stopAudio()"
+          alt="Submit" align="center" style="width: 50px; height: 50px;">
+      </div>
+
+      <p class="shlokMeaning">
+        {{shlokMeaning}}
+      </p>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<router-outlet></router-outlet>

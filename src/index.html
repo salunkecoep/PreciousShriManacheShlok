@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>श्री मनाचे श्लोक</title>
+  <base href="./">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets\images\appIcon.png">
+</head>
+
+<body>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript">
+    function onDeviceReady() {
+      document.removeEventListener('deviceready', onDeviceReady, false);
+      admob.setOptions({
+        publisherId: "ca-app-pub-4127318722091118/8991820972",
+        autoShowBanner: true,
+        autoShowRInterstitial: false
+      });
+      admob.createBannerView();
+    }
+    document.addEventListener("deviceready", onDeviceReady, false);
+  </script>
+  <app-root></app-root>
+</body>
+
+</html>
